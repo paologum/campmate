@@ -1,13 +1,4 @@
 {
   "name": "campmate",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "packageManager": "yarn@3.6.1",
-  "workspaces": [
-    "app",
-    "server",
-    "shared"
-  ]
+  "packageManager": "yarn@3.6.1"
 }
