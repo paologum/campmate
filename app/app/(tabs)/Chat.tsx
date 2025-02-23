@@ -42,39 +42,57 @@ export default function Chat() {
   }, []);
   return (
     <SafeAreaView>
-      <View
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        padding={20}
-      >
+      <View display="flex" alignItems="center" justifyContent="center">
         <Text fontWeight="800" textAlign="center" fontSize="30">
           Chat
         </Text>
+        <View width="100%">
+          <XStack
+            height={100}
+            width="100%"
+            padding={10}
+            justifyContent="flex-start"
+            alignItems="center"
+            gap={30}
+          >
+            <Text paddingLeft="70" fontSize="12" textAlign="center">
+              Name
+            </Text>
+            <Text flex={1} fontSize="12" textAlign="right">
+              Last Message
+            </Text>
+            <Text fontSize="12">Location</Text>
+          </XStack>
+        </View>
         {users.map((user) => {
           return (
-            <View key={user.name}>
+            <View key={user.name} width="100%">
               <XStack
                 height={100}
                 width="100%"
                 padding={10}
-                margin={10}
-                justifyContent="space-between"
+                justifyContent="flex-start"
+                alignItems="center"
+                gap={30}
               >
-                <Image
-                  source={
-                    userImages[user.name]
-                      ? { uri: userImages[user.name] }
-                      : randomProfilePic
-                  }
-                  width={50}
-                  height={50}
-                  borderRadius={50}
-                />
-                <Text fontWeight="800" fontSize="20">
-                  {user.name}
+                <XStack display="flex" alignItems="center" gap={10}>
+                  <Image
+                    source={
+                      userImages[user.name]
+                        ? { uri: userImages[user.name] }
+                        : randomProfilePic
+                    }
+                    width={50}
+                    height={50}
+                    borderRadius={50}
+                  />
+                  <Text fontSize="12" textAlign="center">
+                    {user.name}
+                  </Text>
+                </XStack>
+                <Text flex={1} textAlign="left" fontSize="12">
+                  {user.lastMessage}
                 </Text>
-                <Text>{user.lastMessage}</Text>
                 <Text>{user.location}</Text>
               </XStack>
             </View>
