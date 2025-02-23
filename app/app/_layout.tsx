@@ -23,6 +23,7 @@ export default function RootLayout() {
   const router = useRouter();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Snippet: require("../assets/fonts/Snippet-Regular.ttf"),
   });
 
   useEffect(() => {

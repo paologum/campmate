@@ -19,6 +19,7 @@
     "@tamagui/animate-presence": "^1.125.14",
     "@tamagui/config": "^1.125.14",
     "@tamagui/core": "^1.125.14",
+    "@tamagui/text": "^1.125.14",
     "expo": "~52.0.37",
     "expo-blur": "~14.0.3",
     "expo-constants": "~17.0.7",
