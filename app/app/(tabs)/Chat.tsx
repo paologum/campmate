@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Chat as ChatMessage,
-  User as MessageUser,
   MessageType,
 } from "@flyerhq/react-native-chat-ui";
 import { StyleSheet, SafeAreaView } from "react-native";
