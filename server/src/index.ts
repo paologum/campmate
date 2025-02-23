@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import dotenv from "dotenv";
 import fastifyStatic from "@fastify/static";
 import { db } from "./database/database.js";
+import { getUsers } from "./database/user-handlers.js";
 
 dotenv.config();
 const fastify = Fastify({ logger: true });
@@ -14,16 +15,7 @@ fastify.register(fastifyStatic, {
   prefix: "/public/",
   decorateReply: false,
 });
-fastify.get("/users", async (request, reply) => {
-  try {
-    const snapshot = await db.collection("users").get();
-    const users = snapshot.docs.map((doc) => doc.data());
-    return users;
-  } catch (e) {
-    console.error(e);
-  }
-  return [];
-});
+fastify.get("/users", getUsers);
 const start = async () => {
   try {
     await fastify.listen({
