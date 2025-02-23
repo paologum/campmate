@@ -4,19 +4,25 @@
     "slug": "campmate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/Campmate.png",
     "scheme": "myapp",
-    "backgroundColor": "#d4ad71",
+    "icon": "./assets/images/Campmate.png",
+    "splash": {
+      "image": "./assets/images/Campmate.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#D4AD71"
+    },
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.campmate"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#D4AD71"
-      }
+      },
+      "package": "com.anonymous.campmate"
     },
     "web": {
       "bundler": "metro",
@@ -28,10 +34,6 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#D4AD71"
         }
       ]
     ],
