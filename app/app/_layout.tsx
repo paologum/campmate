@@ -27,8 +27,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
+      router.replace("/initial");
       SplashScreen.hideAsync();
-      router.replace("/Initial");
     }
   }, [loaded]);
 
