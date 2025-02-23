@@ -13,6 +13,7 @@ import {
   Input,
   Label,
   Separator,
+  Button,
 } from "tamagui";
 import { PRIMARY_COLOR } from "../_layout";
 import { Pencil } from "@tamagui/lucide-icons";
@@ -162,6 +163,21 @@ export default function Profile() {
                 </XStack>
               </YStack>
             </YStack>
+            <Button
+              backgroundColor="transparent"
+              borderColor="black"
+              margin="10"
+            >
+              Logout
+            </Button>
+            <Button
+              backgroundColor="transparent"
+              color="red"
+              borderColor="red"
+              margin="10"
+            >
+              Delete Account
+            </Button>
           </ScrollView>
         </View>
       </SafeAreaView>
