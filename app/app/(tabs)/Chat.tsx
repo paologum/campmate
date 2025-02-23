@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import { View, Text, XStack, Image } from "tamagui";
+import { View, Text, XStack, Image, YStack } from "tamagui";
 
 export default function Chat() {
   const defaultUserProPic =
@@ -64,40 +64,42 @@ export default function Chat() {
             <Text fontSize="12">Location</Text>
           </XStack>
         </View>
-        {users.map((user) => {
-          return (
-            <View key={user.name} width="100%">
-              <XStack
-                height={100}
-                width="100%"
-                padding={10}
-                justifyContent="flex-start"
-                alignItems="center"
-                gap={30}
-              >
-                <XStack display="flex" alignItems="center" gap={10}>
-                  <Image
-                    source={
-                      userImages[user.name]
-                        ? { uri: userImages[user.name] }
-                        : randomProfilePic
-                    }
-                    width={50}
-                    height={50}
-                    borderRadius={50}
-                  />
-                  <Text fontSize="12" textAlign="center">
-                    {user.name}
+        <YStack width="100%">
+          {users.map((user) => {
+            return (
+              <View key={user.name} width="100%">
+                <XStack
+                  height={50}
+                  width="100%"
+                  padding={10}
+                  justifyContent="flex-start"
+                  alignItems="center"
+                  gap={30}
+                >
+                  <XStack display="flex" alignItems="center" gap={10}>
+                    <Image
+                      source={
+                        userImages[user.name]
+                          ? { uri: userImages[user.name] }
+                          : randomProfilePic
+                      }
+                      width={50}
+                      height={50}
+                      borderRadius={50}
+                    />
+                    <Text fontSize="12" textAlign="center">
+                      {user.name}
+                    </Text>
+                  </XStack>
+                  <Text flex={1} textAlign="left" fontSize="12">
+                    {user.lastMessage}
                   </Text>
+                  <Text fontSize="12">{user.location}</Text>
                 </XStack>
-                <Text flex={1} textAlign="left" fontSize="12">
-                  {user.lastMessage}
-                </Text>
-                <Text>{user.location}</Text>
-              </XStack>
-            </View>
-          );
-        })}
+              </View>
+            );
+          })}
+        </YStack>
       </View>
     </SafeAreaView>
   );
