@@ -4,7 +4,16 @@ import { Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Circle, Path, Stop } from "react-native-svg";
-import { Text, View, YStack, Image, XStack } from "tamagui";
+import {
+  Text,
+  View,
+  YStack,
+  Image,
+  XStack,
+  Input,
+  Label,
+  Separator,
+} from "tamagui";
 import { PRIMARY_COLOR } from "../_layout";
 import { Pencil } from "@tamagui/lucide-icons";
 
@@ -39,46 +48,104 @@ export default function Profile() {
         </Svg>
       </View>
       <SafeAreaView style={{ height: "100%", width: "100%" }}>
-        <YStack
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          gap="40"
-        >
-          <Text fontWeight="800" textAlign="center" fontSize="20" color="white">
-            Profile
-          </Text>
-          <View position="relative">
-            <Image
-              source={
-                state.user.profilePic
-                  ? { uri: state.user.profilePic }
-                  : randomProfilePic
-              }
-              width={100}
-              height={100}
-              borderRadius={50}
-            />
-            <XStack
-              position="absolute"
-              right={0}
-              bottom={0}
-              width={30}
-              height={30}
-              backgroundColor="white"
-              borderRadius="50%"
-              justifyContent="center"
-              alignItems="center"
-              borderColor={"black"}
+        <View display="flex" height="100%" width="100%" gap="50">
+          <YStack
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="40"
+          >
+            <Text
+              fontWeight="800"
+              textAlign="center"
+              fontSize="20"
+              color="white"
             >
-              <Pencil size={20} color={PRIMARY_COLOR} />
-            </XStack>
-          </View>
-          <Text
-            color="white"
-            fontSize="16"
-          >{`${state.user.name}, ${state.user.age}`}</Text>
-        </YStack>
+              Profile
+            </Text>
+            <View position="relative">
+              <Image
+                source={
+                  state.user.profilePic
+                    ? { uri: state.user.profilePic }
+                    : randomProfilePic
+                }
+                width={100}
+                height={100}
+                borderRadius={50}
+              />
+              <XStack
+                position="absolute"
+                right={0}
+                bottom={0}
+                width={30}
+                height={30}
+                backgroundColor="white"
+                borderRadius="50%"
+                justifyContent="center"
+                alignItems="center"
+                borderColor={"black"}
+              >
+                <Pencil size={20} color={PRIMARY_COLOR} />
+              </XStack>
+            </View>
+            <Text
+              color="white"
+              fontSize="16"
+            >{`${state.user.name}, ${state.user.age}`}</Text>
+          </YStack>
+          <YStack display="flex" gap="20" padding={20}>
+            <YStack gap="10">
+              <XStack justifyContent="space-between">
+                <Text fontSize="16" fontWeight="500">
+                  Account Settings
+                </Text>
+                <Text fontSize="16" color="gray">
+                  Edit
+                </Text>
+              </XStack>
+              <Separator />
+              <XStack alignItems="center" gap={10} width="100%">
+                <Label width={100} htmlFor="name">
+                  Name
+                </Label>
+                <Input value={state.user.name} width="100%" />
+              </XStack>
+              <XStack alignItems="center" gap={10} width="100%">
+                <Label width={100} htmlFor="phone">
+                  Phone Number
+                </Label>
+                <Input
+                  value={state.user.phoneNumber?.toString() || "None"}
+                  color={state.user.phoneNumber ? "black" : "gray"}
+                  width="100%"
+                />
+              </XStack>
+              <XStack alignItems="center" gap={10} width="100%">
+                <Label width={100} htmlFor="phone">
+                  Date of Birth
+                </Label>
+                <Input value={state.user.name} width="100%" />
+              </XStack>
+              <XStack alignItems="center" gap={10} width="100%">
+                <Label width={100} htmlFor="phone">
+                  Date of Birth
+                </Label>
+                <Input value={state.user.email} width="100%" />
+              </XStack>
+            </YStack>
+            <YStack gap="10">
+              <XStack justifyContent="flex-start">
+                <Text fontSize="16" fontWeight="500">
+                  Bio
+                </Text>
+              </XStack>
+              <XStack alignItems="center" gap={10} width="100%">
+                <Input value={state.user.bio} width="100%" />
+              </XStack>
+            </YStack>
+          </YStack>
+        </View>
       </SafeAreaView>
     </>
   );

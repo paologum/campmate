@@ -10,6 +10,7 @@ export type User = {
   preference: "Men" | "Women" | "No Preference";
   dateOfBirth: string;
   email: string;
+  phoneNumber?: number;
 };
 export type State = {
   user?: User;
