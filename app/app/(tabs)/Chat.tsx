@@ -1,19 +1,41 @@
 import { useEffect, useState } from "react";
+import {
+  Chat as ChatMessage,
+  User as MessageUser,
+  MessageType,
+} from "@flyerhq/react-native-chat-ui";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { View, Text, XStack, Image, YStack, Sheet, Separator } from "tamagui";
 
+type User = {
+  id: string;
+  name: string;
+  lastMessage: string;
+  location: string;
+  profilePic: string;
+};
+// change this
+const uuidv4 = () => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = Math.floor(Math.random() * 16);
+    const v = c === "x" ? r : (r % 4) + 8;
+    return v.toString(16);
+  });
+};
 export default function Chat() {
   const defaultUserProPic =
     "http://localhost:3001/public/user-images/cartoon_headshot.png";
   const randomProfilePic = require("../../assets/images/icon.png");
-  const users = [
+  const users: User[] = [
     {
+      id: uuidv4(),
       name: "John Doe",
       lastMessage: "Hello",
       location: "1 km away",
       profilePic: defaultUserProPic,
     },
     {
+      id: uuidv4(),
       name: "Jane Doe",
       lastMessage: "Hi",
       location: "2 km away",
@@ -21,9 +43,7 @@ export default function Chat() {
     },
   ];
   const [userImages, setUserImages] = useState<{ [str: string]: string }>({});
-  const [selectedUser, setSelectedUser] = useState<
-    (typeof users)[0] | undefined
-  >(undefined);
+  const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
   const [position, setPosition] = useState(0);
   useEffect(() => {
     const loadImages = async () => {
@@ -31,7 +51,6 @@ export default function Chat() {
       for (const user of users) {
         try {
           const response = await fetch(user.profilePic);
-          console.log(JSON.stringify(response, null, 2));
           if (response.ok) {
             imageMap[user.name] = user.profilePic;
           }
@@ -72,7 +91,7 @@ export default function Chat() {
           {users.map((user) => {
             return (
               <View
-                key={user.name}
+                key={user.id}
                 width="100%"
                 onPress={() => setSelectedUser(user)}
               >
@@ -147,6 +166,11 @@ export default function Chat() {
             </Text>
             <Separator width="50%" marginVertical="$4" />
           </XStack>
+          {selectedUser ? (
+            <ChatBox sender={selectedUser!} receiver={users[1]!} />
+          ) : (
+            <EmptyChat />
+          )}
         </Sheet.Frame>
       </Sheet>
     </SafeAreaView>
@@ -163,3 +187,35 @@ const EmptyChat: React.FC = () => (
     </Text>
   </>
 );
+
+type ChatBoxProps = {
+  sender: User;
+  receiver: User;
+};
+const ChatBox: React.FC<ChatBoxProps> = ({ sender, receiver }) => {
+  const [messages, setMessages] = useState<MessageType.Text[]>([]);
+  const addMessage = (message: MessageType.Text) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  };
+  const handleSendPress = (message: MessageType.PartialText) => {
+    const textMessage: MessageType.Text = {
+      author: { id: sender.id },
+      createdAt: Date.now(),
+      id: uuidv4(),
+      type: "text",
+      text: message.text,
+    };
+    addMessage(textMessage);
+  };
+  return (
+    <SafeAreaView style={{ width: "100%", height: "100%" }}>
+      <View width="100%" height="100%">
+        <ChatMessage
+          messages={messages}
+          onSendPress={handleSendPress}
+          user={sender}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
