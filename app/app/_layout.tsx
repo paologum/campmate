@@ -14,7 +14,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { createTamagui, createTokens, TamaguiProvider } from "tamagui";
 import { defaultConfig } from "@tamagui/config/v4";
 
-export const PRIMARY_COLOR = "#D4AD71";
+export const PRIMARY_COLOR = "#DAB0F4";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

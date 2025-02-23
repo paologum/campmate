@@ -1,6 +1,6 @@
 import { action } from "mobx";
-import { state } from "./state";
+import { state, User } from "./state";
 
-export const nothing = action((newval: number) => {
-  state.state = newval;
+export const setUser = action((user: User) => {
+  state.user = user;
 });
