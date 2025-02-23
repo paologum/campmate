@@ -11,8 +11,10 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { createTamagui, TamaguiProvider } from "tamagui";
+import { createTamagui, createTokens, TamaguiProvider } from "tamagui";
 import { defaultConfig } from "@tamagui/config/v4";
+
+export const PRIMARY_COLOR = "#D4AD71";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +40,7 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={config}>
+    <TamaguiProvider config={config} defaultTheme="light">
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="initial" options={{ headerShown: false }} />
