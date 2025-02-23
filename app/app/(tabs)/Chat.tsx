@@ -5,6 +5,8 @@ import {
 } from "@flyerhq/react-native-chat-ui";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { View, Text, XStack, Image, YStack, Sheet, Separator } from "tamagui";
+import { PRIMARY_COLOR } from "../_layout";
+import { Pencil } from "@tamagui/lucide-icons";
 
 type User = {
   id: string;
