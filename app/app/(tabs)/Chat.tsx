@@ -193,9 +193,17 @@ type ChatBoxProps = {
   receiver: User;
 };
 const ChatBox: React.FC<ChatBoxProps> = ({ sender, receiver }) => {
-  const [messages, setMessages] = useState<MessageType.Text[]>([]);
+  const [messages, setMessages] = useState<MessageType.Text[]>([
+    {
+      author: { id: receiver.id },
+      createdAt: Date.now() - 1000 * 60 * 60,
+      id: uuidv4(),
+      type: "text",
+      text: "Hello",
+    },
+  ]);
   const addMessage = (message: MessageType.Text) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
+    setMessages((prevMessages) => [message, ...prevMessages]);
   };
   const handleSendPress = (message: MessageType.PartialText) => {
     const textMessage: MessageType.Text = {
