@@ -9,7 +9,9 @@ fastify.register(cors, {
   origin: "*",
 });
 fastify.register(fastifyStatic, {
-  root: `${__dirname}/public`,
+  root: process.cwd() + "/public",
+  prefix: "/public/",
+  decorateReply: false,
 });
 const start = async () => {
   try {
