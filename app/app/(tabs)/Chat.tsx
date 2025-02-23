@@ -81,7 +81,7 @@ export default function Chat() {
             <Text paddingLeft="70" fontSize="12" textAlign="center">
               Name
             </Text>
-            <Text flex={1} fontSize="12" textAlign="right">
+            <Text flex={1} fontSize="12" textAlign="left" padding={10}>
               Last Message
             </Text>
             <Text fontSize="12">Location</Text>
