@@ -1,0 +1,11 @@
+# This is a file for you to write an un-named mutation.
+# Only one un-named mutation is allowed per file.
+mutation {
+  location_insert(
+    data: {
+      id: "11111111222233334444555555555555",
+      latitude: 37.7749,
+      longitude: -122.4194
+    }
+  )
+}

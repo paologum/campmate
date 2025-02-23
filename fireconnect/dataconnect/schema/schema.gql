@@ -1,0 +1,35 @@
+type Location @table {
+  id: UUID! @default(expr: "uuidV4()")
+  latitude: Float!
+  longitude: Float!
+}
+
+type User @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String!
+  phoneNumber: String
+  dateOfBirth: String
+  email: String!
+  bio: String
+  profilePic: String
+  interests: [String]
+  maxDistance: Float
+  locationId: UUID
+  currentLocation: Location
+}
+
+type Chat @table {
+  id: UUID! @default(expr: "uuidV4()")
+  participant1: User!
+  participant2: User!
+  lastMessage: String
+}
+
+type Message @table {
+  id: UUID! @default(expr: "uuidV4()")
+  chat: Chat!
+  sender: User!
+  content: String!
+  timestamp: String!
+  delivered: Boolean!
+}

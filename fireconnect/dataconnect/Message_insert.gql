@@ -1,0 +1,14 @@
+# This is a file for you to write an un-named mutation.
+# Only one un-named mutation is allowed per file.
+mutation {
+  message_insert(
+    data: {
+      id: "55555555666677778888999900001111",
+      chat: { id: "44444444555566667777888899990000" },
+      sender: { id: "22222222333344445555666677778888" },
+      content: "Hey, how's it going?",
+      timestamp: "2025-02-23T03:00:00Z",
+      delivered: true
+    }
+  )
+}

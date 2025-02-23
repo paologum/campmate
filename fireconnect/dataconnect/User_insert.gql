@@ -1,0 +1,16 @@
+mutation {
+  user_insert(
+    data: {
+      id: "22222222333344445555666677778888",
+      name: "John Doe",
+      phoneNumber: "+1234567890",
+      dateOfBirth: "1990-01-01",
+      email: "johndoe@example.com",
+      bio: "I love camping and outdoor adventures.",
+      profilePic: "https://example.com/johndoe.jpg",
+      interests: ["hiking", "camping", "fishing"],
+      maxDistance: 50.0,
+      locationId: "11111111222233334444555555555555"
+    }
+  )
+}
