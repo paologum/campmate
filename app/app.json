@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/images/Campmate.png",
       "resizeMode": "contain",
-      "backgroundColor": "#D4AD71"
+      "backgroundColor": "#DAB0F4"
     },
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

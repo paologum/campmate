@@ -26,12 +26,11 @@ export default function HomeScreen() {
     top: Math.random() * (height - tent.height), // Keeps tents inside garden area
   });
   const generateTents = () => {
-    return Array.from({ length: 5 }).map((_, index) => {
+    return Array.from({ length: 5 }).map(() => {
       const tent =
         scaledTentImages[Math.floor(Math.random() * tentImages.length)]; // Pick random tent color
-      if (!tent?.source) throw new Error("Tent source not found");
       return {
-        source: tent.source,
+        source: scaledTentImages,
         position: generateRandomPosition(tent),
       };
     });
@@ -40,7 +39,7 @@ export default function HomeScreen() {
 
   return (
     <>
-      <View position="relative">
+      <View position="absolute">
         <ImageBackground
           style={{
             width,
@@ -51,18 +50,18 @@ export default function HomeScreen() {
           }}
           source={require("../../assets/images/garden.jpg")}
         />
-        <View position="absolute" top={0} left={0} width="100%" height="100%">
+        <View position="relative" top={0} left={0} width="100%" height="100%">
           {tents.map(({ source, position }, index) => (
             <Image
               key={index}
               source={source}
-              resizeMethod="resize"
-              resizeMode="contain"
-              width="20"
-              height="20"
-              transform={[{ scale: 0.5 }]}
-              position="absolute"
-              style={position}
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                zIndex: 100,
+                ...position,
+              }}
             />
           ))}
         </View>
