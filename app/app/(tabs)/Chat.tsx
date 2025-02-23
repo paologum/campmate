@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import { View, Text, XStack, Image, YStack } from "tamagui";
+import { View, Text, XStack, Image, YStack, Sheet, Separator } from "tamagui";
 
 export default function Chat() {
   const defaultUserProPic =
@@ -21,6 +21,10 @@ export default function Chat() {
     },
   ];
   const [userImages, setUserImages] = useState<{ [str: string]: string }>({});
+  const [selectedUser, setSelectedUser] = useState<
+    (typeof users)[0] | undefined
+  >(undefined);
+  const [position, setPosition] = useState(0);
   useEffect(() => {
     const loadImages = async () => {
       const imageMap: { [str: string]: string } = {};
@@ -67,7 +71,11 @@ export default function Chat() {
         <YStack width="100%">
           {users.map((user) => {
             return (
-              <View key={user.name} width="100%">
+              <View
+                key={user.name}
+                width="100%"
+                onPress={() => setSelectedUser(user)}
+              >
                 <XStack
                   height={50}
                   width="100%"
@@ -101,6 +109,52 @@ export default function Chat() {
           })}
         </YStack>
       </View>
+      <Sheet
+        modal={true}
+        open={!!selectedUser}
+        onOpenChange={(e: boolean) => {
+          if (!e) {
+            setSelectedUser(undefined);
+          }
+        }}
+        snapPoints={[80, 90]}
+        snapPointsMode={"percent"}
+        dismissOnSnapToBottom
+        position={position}
+        onPositionChange={setPosition}
+        zIndex={100_000}
+        animation="medium"
+      >
+        <Sheet.Overlay
+          animation="lazy"
+          backgroundColor="$shadow6"
+          enterStyle={{ opacity: 0 }}
+          exitStyle={{ opacity: 0 }}
+        />
+
+        <Sheet.Handle />
+        <Sheet.Frame
+          padding="$4"
+          justifyContent="flex-start"
+          alignItems="center"
+          gap="$5"
+          display="flex"
+        >
+          <XStack display="flex" gap={20} alignItems="center">
+            <Separator width="50%" marginVertical="$4" />
+            <Text fontWeight="500" textAlign="center" fontSize="20">
+              Today
+            </Text>
+            <Separator width="50%" marginVertical="$4" />
+          </XStack>
+          <Text fontSize="20" fontWeight="800">
+            Chat
+          </Text>
+          <Text fontSize="12" textAlign="center">
+            This is a chat window
+          </Text>
+        </Sheet.Frame>
+      </Sheet>
     </SafeAreaView>
   );
 }
