@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import fastifyStatic from "@fastify/static";
 
 dotenv.config();
-
 const fastify = Fastify({ logger: true });
 fastify.register(cors, {
   origin: "*",
