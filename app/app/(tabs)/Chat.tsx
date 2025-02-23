@@ -147,14 +147,19 @@ export default function Chat() {
             </Text>
             <Separator width="50%" marginVertical="$4" />
           </XStack>
-          <Text fontSize="20" fontWeight="800">
-            Chat
-          </Text>
-          <Text fontSize="12" textAlign="center">
-            This is a chat window
-          </Text>
         </Sheet.Frame>
       </Sheet>
     </SafeAreaView>
   );
 }
+
+const EmptyChat: React.FC = () => (
+  <>
+    <Text fontSize="20" fontWeight="800">
+      Chat
+    </Text>
+    <Text fontSize="12" textAlign="center">
+      This is a chat window
+    </Text>
+  </>
+);
