@@ -2,11 +2,13 @@ import { ThemedView } from "@/components/ThemedView";
 import { Image, Text, View, XStack } from "tamagui";
 import { StyleSheet } from "react-native";
 import { Mail } from "@tamagui/lucide-icons";
+import "expo-router/entry";
 import { PRIMARY_COLOR } from "./_layout";
 import { useRouter } from "expo-router";
 
 export default function InitialScreen() {
   const router = useRouter();
+  const login = async () => {};
   return (
     <ThemedView style={styles.container}>
       <Image source={require("@/assets/images/initial-page.png")} />
@@ -42,7 +44,7 @@ export default function InitialScreen() {
               textAlign="center"
               color="white"
               onPress={() => {
-                router.push("/(tabs)");
+                router.push("/SignIn");
               }}
             >
               Login with Email

@@ -7,11 +7,11 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { createTamagui, createTokens, TamaguiProvider } from "tamagui";
+import { createTamagui, createTokens, TamaguiProvider, Text } from "tamagui";
 import { defaultConfig } from "@tamagui/config/v4";
 
 export const PRIMARY_COLOR = "#DAB0F4";
@@ -30,7 +30,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      router.replace("/initial");
       SplashScreen.hideAsync();
     }
   }, [loaded]);
@@ -43,9 +42,21 @@ export default function RootLayout() {
     <TamaguiProvider config={config} defaultTheme="light">
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="initial" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="SignIn"
+            options={{
+              headerBackTitle: "Back",
+              headerTitle: "Sign In",
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
