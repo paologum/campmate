@@ -4,7 +4,7 @@ import {
   FastifyRequest,
   RegisterOptions,
 } from "fastify";
-import { getUsers } from "./user-handlers.js";
+import { createUser, getUsers, loginUser } from "./user-handlers.js";
 import { auth } from "./database.js";
 import { User } from "shared";
 import { DecodedIdToken, getAuth } from "firebase-admin/auth";
@@ -34,4 +34,6 @@ export const userRoutes = (
 ) => {
   fastify.addHook("preHandler", verifyFirebaseToken);
   fastify.get("/", getUsers);
+  fastify.post("/signup", createUser);
+  fastify.post("/login", loginUser);
 };
