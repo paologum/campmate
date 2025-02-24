@@ -11,8 +11,15 @@ import { ReactNode, useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { createTamagui, createTokens, TamaguiProvider, Text } from "tamagui";
+import {
+  createTamagui,
+  View,
+  createTokens,
+  TamaguiProvider,
+  Text,
+} from "tamagui";
 import { defaultConfig } from "@tamagui/config/v4";
+import { ArrowLeft } from "@tamagui/lucide-icons";
 
 export const PRIMARY_COLOR = "#DAB0F4";
 
@@ -53,8 +60,29 @@ export default function RootLayout() {
           <Stack.Screen
             name="SignIn"
             options={{
-              headerBackTitle: "Back",
-              headerTitle: "Sign In",
+              headerBackButtonDisplayMode: "minimal",
+              headerLeft(props) {
+                return (
+                  <ArrowLeft
+                    size={35}
+                    color={PRIMARY_COLOR}
+                    onPress={() => {
+                      router.back();
+                    }}
+                    {...props}
+                  />
+                );
+              },
+              headerBackground: () => (
+                <View
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "transparent",
+                  }}
+                />
+              ),
+              headerTitle: "",
             }}
           />
         </Stack>
