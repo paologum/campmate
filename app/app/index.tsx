@@ -54,7 +54,13 @@ export default function InitialScreen() {
         </View>
         <Text>
           Don't have an account?{" "}
-          <Text color={PRIMARY_COLOR} fontWeight="bold">
+          <Text
+            color={PRIMARY_COLOR}
+            fontWeight="bold"
+            onPress={() => {
+              router.push("/Signup");
+            }}
+          >
             Sign up
           </Text>
         </Text>

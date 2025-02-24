@@ -58,6 +58,34 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
           <Stack.Screen
+            name="Signup"
+            options={{
+              headerBackButtonDisplayMode: "minimal",
+              headerLeft(props) {
+                return (
+                  <ArrowLeft
+                    size={35}
+                    color={PRIMARY_COLOR}
+                    onPress={() => {
+                      router.back();
+                    }}
+                    {...props}
+                  />
+                );
+              },
+              headerBackground: () => (
+                <View
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "transparent",
+                  }}
+                />
+              ),
+              headerTitle: "",
+            }}
+          />
+          <Stack.Screen
             name="SignIn"
             options={{
               headerBackButtonDisplayMode: "minimal",

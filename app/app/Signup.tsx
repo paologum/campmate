@@ -13,9 +13,12 @@ import { PRIMARY_COLOR } from "./_layout";
 import { Lock, Mail, X } from "@tamagui/lucide-icons";
 import { useState } from "react";
 import { auth, db } from "@/state";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
-export default function SignInScreen() {
+export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -27,7 +30,7 @@ export default function SignInScreen() {
         }}
       >
         <Text color="black" fontWeight="700" textAlign="center" fontSize={30}>
-          Login
+          Sign Up
         </Text>
         <Form
           display="flex"
@@ -35,7 +38,7 @@ export default function SignInScreen() {
           height="100%"
           onSubmit={async () => {
             try {
-              const user = await signInWithEmailAndPassword(
+              const user = await createUserWithEmailAndPassword(
                 auth,
                 email,
                 password
@@ -43,7 +46,7 @@ export default function SignInScreen() {
               console.log(user);
               return user.user;
             } catch (e) {
-              console.log(e);
+              console.error(e);
               return e;
             }
           }}
@@ -89,7 +92,7 @@ export default function SignInScreen() {
                     !email || !password ? "darkgray" : PRIMARY_COLOR
                   }
                 >
-                  <Text color="white">Login</Text>
+                  <Text color="white">Sign Up</Text>
                 </Button>
               </Form.Trigger>
             </XStack>
