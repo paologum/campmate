@@ -17,8 +17,10 @@
       "forceConsistentCasingInFileNames": true,
       "allowJs": true,
       "target": "esnext",
+      "skipLibCheck": true,
       "module": "esnext",
       "moduleResolution": "node",
-      "resolveJsonModule": true
-    }
+      "resolveJsonModule": true,
+    },
+    "exclude": ["**/node_modules", "**/dist"]
   }

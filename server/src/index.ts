@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import fastifyStatic from "@fastify/static";
 import { db } from "./database/database.js";
 import { getUsers } from "./database/user-handlers.js";
+import { userRoutes } from "./database/user-auth.js";
 
 dotenv.config();
 const fastify = Fastify({ logger: true });
@@ -15,7 +16,7 @@ fastify.register(fastifyStatic, {
   prefix: "/public/",
   decorateReply: false,
 });
-fastify.get("/users", getUsers);
+fastify.register(userRoutes, { prefix: "/users" });
 const start = async () => {
   try {
     await fastify.listen({
