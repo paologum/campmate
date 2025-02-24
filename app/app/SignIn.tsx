@@ -11,8 +11,11 @@ import {
 } from "tamagui";
 import { PRIMARY_COLOR } from "./_layout";
 import { Lock, Mail, X } from "@tamagui/lucide-icons";
+import { useState } from "react";
 
 export default function SignInScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <SafeAreaView style={{ height: "100%" }}>
       <View
@@ -21,10 +24,10 @@ export default function SignInScreen() {
           height: "100%",
         }}
       >
-        <Text color="black" fontWeight="800" textAlign="center" fontSize={50}>
+        <Text color="black" fontWeight="700" textAlign="center" fontSize={30}>
           Login
         </Text>
-        <Form display="flex" paddingTop="80" height="100%">
+        <Form display="flex" paddingTop="80" height="100%" onSubmit={() => {}}>
           <YStack display="flex" alignItems="center" justifyContent="center">
             <XStack
               padding={20}
@@ -37,6 +40,8 @@ export default function SignInScreen() {
                 flex={1}
                 placeholder="Email"
                 keyboardType="email-address"
+                value={email}
+                onChangeText={setEmail}
               />
             </XStack>
             <XStack
@@ -51,12 +56,22 @@ export default function SignInScreen() {
                 placeholder="Password"
                 htmlFor="password"
                 secureTextEntry
+                value={password}
+                onChangeText={setPassword}
               />
             </XStack>
             <XStack padding={20} alignSelf="center">
-              <Button width="100%" backgroundColor="darkgray">
-                <Text color="white">Login</Text>
-              </Button>
+              <Form.Trigger asChild>
+                <Button
+                  width="100%"
+                  disabled={!email || !password}
+                  backgroundColor={
+                    !email || !password ? "darkgray" : PRIMARY_COLOR
+                  }
+                >
+                  <Text color="white">Login</Text>
+                </Button>
+              </Form.Trigger>
             </XStack>
           </YStack>
         </Form>
