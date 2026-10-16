@@ -1,26 +1,16 @@
 import { SafeAreaView } from "react-native";
-import {
-  Button,
-  Form,
-  Input,
-  Label,
-  Text,
-  View,
-  XStack,
-  YStack,
-} from "tamagui";
+import { Button, Form, Input, Text, View, XStack, YStack } from "tamagui";
 import { PRIMARY_COLOR } from "./_layout";
-import { Lock, Mail, X } from "@tamagui/lucide-icons";
+import { Lock, Mail } from "@tamagui/lucide-icons";
 import { useState } from "react";
-import { auth, db } from "@/state";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { auth } from "@/state";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "expo-router";
 
 export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   return (
     <SafeAreaView style={{ height: "100%" }}>
       <View
@@ -43,7 +33,7 @@ export default function SignUpScreen() {
                 email,
                 password
               );
-              console.log(user);
+              router.push("/Home");
               return user.user;
             } catch (e) {
               console.error(e);
